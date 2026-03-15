@@ -1,0 +1,65 @@
+:root {
+  color-scheme: light;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  --bg-muted: #f6f6f6;
+  --bg-surface: #ffffff;
+  --bg-elevated: #fdfdfd;
+  --text-primary: #1b1a1a;
+  --text-muted: #5f6272;
+  --border-soft: #e2e4ec;
+  --border-strong: #c3c7d3;
+  --primary: #1b1a1a;
+  --primary-strong: #000000;
+  --accent: #ff8427;
+  --success: #198754;
+  --danger: #dc2626;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg-muted);
+  color: var(--text-primary);
+}
+
+body {
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 999px;
+}

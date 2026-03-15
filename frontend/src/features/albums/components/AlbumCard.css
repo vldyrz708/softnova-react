@@ -1,0 +1,90 @@
+.pc-card {
+  width: 260px;
+  height: 400px;
+  background-color: #fff !important;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.pc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(72, 206, 10, 0.18);
+}
+.pc-img-wrap {
+  height: 180px;
+  width: 100%;
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.pc-img-wrap img {
+  max-height: 100%;
+  width: auto;
+  object-fit: cover;
+}
+.pc-body {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.pc-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+  margin-top: 0;
+  color: var(--text-primary);
+}
+.pc-body p {
+  font-size: 13px;
+  color: #333;
+  text-align: left;
+  margin-bottom: 3px;
+  margin-top: 0;
+}
+.pc-stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+.pc-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.pc-dot--in {
+  background-color: #198754;
+  color: #198754;
+}
+.pc-dot--out {
+  background-color: #dc3545;
+  color: #dc3545;
+}
+.pc-stock-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.pc-btn {
+  background-color: #1b1a1a;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  padding: 4px 14px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+  margin-top: auto;
+}
+.pc-btn:hover {
+  background-color: #333;
+}

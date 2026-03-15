@@ -1,0 +1,46 @@
+.al-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.al-search {
+  width: 160px;
+  transition: all 0.4s ease;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 8px 15px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+.al-search:focus {
+  width: 250px;
+  border-color: #999;
+}
+.al-add-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  padding: 8px 18px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.al-add-btn:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+.al-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+.al-empty-text {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 40px 0;
+}

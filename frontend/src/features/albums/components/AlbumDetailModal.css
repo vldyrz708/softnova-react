@@ -1,0 +1,231 @@
+.pdm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+.pdm-modal {
+  background: linear-gradient(135deg, #f8fafc 80%, #e3e8ee 100%);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
+  padding: 2.5rem 2rem;
+  border: none;
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transition: box-shadow 0.3s;
+}
+.pdm-toolbar {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  padding: 0.35rem 0.75rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+.pdm-btn-edit {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 6px 18px;
+  font-size: 1rem;
+  background: transparent;
+  border: 1px solid #0d6efd;
+  color: #0d6efd;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.pdm-btn-edit:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+.pdm-btn-delete {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 6px 18px;
+  font-size: 1rem;
+  background: transparent;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.pdm-btn-delete:hover {
+  background: #dc3545;
+  color: #fff;
+}
+.pdm-toolbar-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  opacity: 0.8;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: 0.2s;
+  color: #333;
+}
+.pdm-toolbar-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.pdm-exit {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.06);
+  color: #333;
+}
+.pdm-exit:hover {
+  background: #fff;
+  transform: scale(1.04);
+}
+.pdm-body {
+  display: grid;
+  grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+.pdm-media {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.pdm-media-frame {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.08), rgba(93, 63, 211, 0.08));
+  border: 1px dashed rgba(99, 102, 241, 0.5);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.pdm-img {
+  border-radius: 1rem;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.15);
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  object-fit: cover;
+  margin: 0 auto;
+  border: 2px solid rgba(148, 163, 184, 0.4);
+  background: #f8fafc;
+  display: block;
+}
+.pdm-media-note {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin: 0;
+}
+.pdm-info {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1.2rem;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  font-size: 1.05rem;
+  color: #1f2933;
+}
+.pdm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.4rem;
+}
+.pdm-field {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 130px;
+}
+.pdm-field::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.12), rgba(99, 102, 241, 0.12));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.pdm-field:hover::after {
+  opacity: 1;
+}
+.pdm-field--pill {
+  background: linear-gradient(120deg, rgba(13, 110, 253, 0.12), rgba(16, 185, 129, 0.12));
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+.pdm-field--full {
+  grid-column: 1 / -1;
+}
+.pdm-field-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 400;
+}
+.pdm-field-value {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0f172a;
+  flex: 1;
+  min-height: 48px;
+  border-radius: 0.65rem;
+  background: #f8fbff;
+  padding: 0.35rem 0.75rem;
+}
+@media (max-width: 992px) {
+  .pdm-body {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .pdm-modal {
+    padding: 1.2rem 0.5rem;
+  }
+  .pdm-img {
+    max-width: 120px;
+  }
+  .pdm-info {
+    padding: 1rem 0.5rem;
+  }
+  .pdm-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,96 @@
+.rh-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/legacy/images/fondo.png') center / cover no-repeat;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.rh-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(175, 202, 230, 0.5),
+    rgba(255, 152, 73, 0.6)
+  );
+}
+.rh-content {
+  position: relative;
+  text-align: center;
+  padding: 40px;
+}
+.rh-subtitle {
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #000;
+}
+.rh-title {
+  font-size: 8rem;
+  font-weight: 800;
+  margin: 10px 0 40px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.rh-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.rh-actions button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.rh-actions button:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+@media (max-width: 600px) {
+  .rh-title {
+    font-size: 4rem;
+  }
+}
+
+/* ── Sección de bandas (debajo del hero) ── */
+.rh-brands {
+  background: linear-gradient(90deg, #fff, #f2f2f2);
+  padding: 48px 16px;
+}
+.rh-brands__inner {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+}
+.rh-brands__inner img {
+  height: 70px;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+.rh-brands__inner img:hover {
+  transform: translateY(-6px);
+}
+.rh-brands__signature {
+  text-align: right;
+  width: min(1100px, 100%);
+  margin: 24px auto 0;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}

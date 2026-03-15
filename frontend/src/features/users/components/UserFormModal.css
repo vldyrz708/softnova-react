@@ -1,0 +1,108 @@
+.uf-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+.uf-modal {
+  background: linear-gradient(135deg, #f8fafc 80%, #e3e8ee 100%);
+  border-radius: 1.5rem;
+  border: none;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.25);
+}
+.uf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem 0;
+}
+.uf-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.uf-close {
+  border: none;
+  background: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  line-height: 1;
+}
+.uf-form {
+  padding: 1.2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.uf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.uf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.uf-label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.uf-field input,
+.uf-field select {
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 1.05rem;
+  outline: none;
+  width: 100%;
+  background: #f8f9fa;
+}
+.uf-field input:focus,
+.uf-field select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+}
+.uf-field .err {
+  border-color: var(--danger);
+}
+.uf-error {
+  color: var(--danger);
+  font-size: 0.76rem;
+}
+.uf-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+.uf-cancel,
+.uf-submit {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 22px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.uf-cancel {
+  background: var(--bg-muted);
+  color: var(--text-primary);
+}
+.uf-submit {
+  background: #0d6efd;
+  color: #fff;
+}
+.uf-submit:disabled,
+.uf-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

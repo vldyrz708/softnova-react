@@ -1,0 +1,81 @@
+.up-add-btn {
+  border: none;
+  background: var(--text-primary);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.up-table-wrap {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  overflow: auto;
+}
+.up-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.up-table th,
+.up-table td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-soft);
+}
+.up-table th {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: #ee9e42;
+}
+.up-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.up-table tbody tr:hover {
+  background: #ede7f6;
+  cursor: pointer;
+}
+.up-table tbody tr:hover td:first-child {
+  font-weight: 700;
+  color: #c2692e;
+  font-size: 15px;
+}
+.up-role-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.up-pass {
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+.up-btn-edit,
+.up-btn-delete {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+}
+.up-btn-edit:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+.up-btn-delete:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
+.up-empty-cell {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px;
+}
+.up-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}

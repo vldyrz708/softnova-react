@@ -1,0 +1,10 @@
+.not-found {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 12px;
+}
+.not-found a {
+  color: var(--primary);
+}

@@ -1,0 +1,108 @@
+.lp-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-muted);
+}
+.lp-card {
+  width: 380px;
+  background: #fff7f0;
+  padding: 35px;
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+  animation: lpFadeIn 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@keyframes lpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.lp-icon-wrap {
+  background: linear-gradient(135deg, #ff8427, #ff5a00);
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 90, 0, 0.3);
+}
+.lp-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+.lp-card h2 {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.lp-card form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.lp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lp-field label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #555;
+}
+.lp-field input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.lp-field input:focus {
+  border-color: #ff8427;
+  box-shadow: 0 0 0 2px rgba(255, 132, 39, 0.2);
+}
+.lp-btn {
+  background: linear-gradient(90deg, #ff8a2d, #ff5700);
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 4px;
+  transition: opacity 0.2s;
+}
+.lp-btn:hover {
+  opacity: 0.9;
+}
+.lp-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.lp-error {
+  color: #dc3545;
+  font-size: 0.86rem;
+  text-align: center;
+  margin: 0;
+}
