@@ -62,6 +62,102 @@ Corre en `http://localhost:5173`
 
 ---
 
+## Estructura del proyecto
+
+```
+softnova-react/
+├── backend/
+│   ├── server.js                  # Entry point: carga .env, conecta MongoDB, inicia Express
+│   ├── app.js                     # Configura la app: CORS, rutas, middlewares, Swagger UI
+│   ├── config/
+│   │   ├── db.js                  # Conexión Mongoose con MONGODB_URI
+│   │   └── swagger.json           # Especificación OpenAPI 3.x (visible en /doc)
+│   ├── controllers/
+│   │   ├── albumController.js     # CRUD completo de álbumes: filtros, paginación, stats
+│   │   ├── authController.js      # Login, register, logout, perfil (/me) + JWT
+│   │   └── userController.js      # CRUD de usuarios con validación de edad y rol
+│   ├── middlewares/
+│   │   ├── auth.js                # verifyToken + requireRole(...roles)
+│   │   └── error.js               # Manejo centralizado de errores (Mongoose, JWT, 404)
+│   ├── models/
+│   │   ├── Album.js               # Schema: nombre, artista, versión, precio, stock, foto…
+│   │   └── User.js                # Schema: nombre, correo, rol, contraseña (hash bcrypt)
+│   ├── routes/
+│   │   ├── albumRoutes.js         # /api/albums — con Multer para subida de fotos
+│   │   ├── authRoutes.js          # /api/auth — login, register, logout, me
+│   │   └── userRoutes.js          # /api/users — Admin+Gerente, delete solo Admin
+│   ├── validators/
+│   │   └── album.js               # Middlewares de validación y sanitización de álbumes
+│   ├── .env.example               # Plantilla de variables de entorno
+│   └── package.json
+│
+└── frontend/
+    └── src/
+        ├── main.jsx               # Entry point React: monta <App> en #root
+        ├── App.jsx                # Raíz del árbol de componentes, renderiza <AppRouter>
+        ├── api/
+        │   └── client.js          # Axios configurado: base URL, token en headers, logout en 401
+        ├── constants/
+        │   └── navigation.js      # HOME_BY_ROLE y NAVIGATION (fuente de verdad de rutas)
+        ├── providers/
+        │   └── AppProviders.jsx   # QueryClientProvider + BrowserRouter + Devtools
+        ├── router/
+        │   ├── AppRouter.jsx      # Todas las rutas de la app (públicas + protegidas)
+        │   └── ProtectedRoute.jsx # Guard: redirige si no autenticado o sin el rol correcto
+        ├── layouts/
+        │   ├── DashboardLayout.jsx  # Shell autenticado: Topbar + Sidebar + Outlet
+        │   └── DashboardLayout.css
+        ├── styles/
+        │   ├── global.css         # Design tokens, reset, tipografía base
+        │   └── marketing.css      # Estilos de la landing: navbar, hero, modales, botones
+        ├── components/
+        │   ├── navigation/
+        │   │   ├── Sidebar.jsx    # Menú lateral con links filtrados por rol
+        │   │   ├── Sidebar.css
+        │   │   ├── Topbar.jsx     # Barra superior: logo, búsqueda, logout
+        │   │   └── Topbar.css
+        │   └── ui/
+        │       ├── Loader.jsx           # Spinner animado (3 puntos)
+        │       ├── EmptyState.jsx       # Pantalla vacía sin resultados
+        │       ├── ErrorState.jsx       # Pantalla de error con botón de retry
+        │       ├── PageHeader.jsx       # Encabezado de página con slot de acciones
+        │       └── ConfirmDialog.jsx    # Modal de confirmación para acciones destructivas
+        ├── features/
+        │   ├── auth/
+        │   │   ├── api.js          # login, logout, register, profile (/me)
+        │   │   ├── hooks.js        # useAuthSession — sincroniza sesión al montar
+        │   │   ├── store.js        # Zustand + localStorage: token, user, expiresAt
+        │   │   └── pages/
+        │   │       └── LoginPage.jsx   # Página /login con redirect a home según rol
+        │   ├── albums/
+        │   │   ├── api.js          # CRUD + búsqueda + stats de álbumes
+        │   │   ├── hooks.js        # useAlbums, useCreateAlbum, useUpdateAlbum, useDeleteAlbum
+        │   │   ├── pages/
+        │   │   │   └── AlbumsPage.jsx  # Catálogo con búsqueda, tarjetas y modales
+        │   │   └── components/
+        │   │       ├── AlbumCard.jsx         # Tarjeta de álbum con badge de stock
+        │   │       ├── AlbumDetailModal.jsx  # Modal de detalle (editar/eliminar para Admin)
+        │   │       └── AlbumFormModal.jsx    # Formulario crear/editar álbum
+        │   ├── users/
+        │   │   ├── api.js          # CRUD de usuarios
+        │   │   ├── hooks.js        # useUsers, useCreateUser, useUpdateUser, useDeleteUser
+        │   │   ├── pages/
+        │   │   │   └── UsersPage.jsx   # Tabla de usuarios con badges de rol
+        │   │   └── components/
+        │   │       └── UserFormModal.jsx  # Formulario crear/editar usuario
+        │   └── dashboard/
+        │       └── pages/
+        │           ├── AdminHomePage.jsx    # Home para Admin: acceso a Álbumes y Usuarios
+        │           ├── GerenteHomePage.jsx  # Home para Gerente: acceso a Álbumes y Usuarios
+        │           ├── CajeroHomePage.jsx   # Home para Usuario/Cajero: solo Álbumes
+        │           └── RoleHomePage.css     # Estilos compartidos del hero y banda de marcas
+        └── pages/public/
+            ├── LandingPage.jsx    # Página pública /: modales de login y registro integrados
+            └── NotFoundPage.jsx   # Página 404 para rutas no encontradas
+```
+
+---
+
 ## Elementos universales — listos para usar tal cual
 
 Estos archivos no necesitan modificarse para nuevas pantallas o features. Se pueden importar directamente.
