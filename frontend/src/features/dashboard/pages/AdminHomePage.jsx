@@ -1,17 +1,11 @@
 import './AdminHomePage.css'
 import AdminWelcome from '../components/AdminWelcome.jsx'
-import DashboardStats from '../components/DashboardStats.jsx'
 import QuickActions from '../components/QuickActions.jsx'
 import BrandStrip from '../components/BrandStrip.jsx'
 
 const AdminHomePage = () => (
   <div className="admin-home">
     <AdminWelcome />
-
-    <section>
-      <h2 className="admin-home__section-label">Resumen rápido</h2>
-      <DashboardStats />
-    </section>
 
     <section>
       <h2 className="admin-home__section-label">Accesos rápidos</h2>

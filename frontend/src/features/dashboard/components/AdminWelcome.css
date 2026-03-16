@@ -1,132 +1,170 @@
-.aw-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-soft);
+/* ── Hero ─────────────────────────────────────────────────────── */
+.aw-hero {
+  background: #0d0d0d;
   border-radius: var(--radius-md);
-  padding: 36px 40px;
+  padding: 52px 56px;
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  overflow: hidden;
   position: relative;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-/* Left orange accent strip */
-.aw-card::before {
-  content: '';
+/* ── Background decoration ── */
+.aw-hero__bg {
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 5px;
-  background: linear-gradient(to bottom, var(--accent), #c95f00);
-  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  inset: 0;
+  pointer-events: none;
 }
 
-.aw-body {
+.aw-hero__circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 132, 39, 0.06);
+  border: 1px solid rgba(255, 132, 39, 0.12);
+  width: 340px;
+  height: 340px;
+  top: -100px;
+  right: 60px;
+}
+
+.aw-hero__circle--2 {
+  width: 200px;
+  height: 200px;
+  top: 50px;
+  right: 220px;
+  background: rgba(255, 255, 255, 0.018);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.aw-hero__watermark {
+  position: absolute;
+  bottom: -14px;
+  left: -6px;
+  font-size: 8.5rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.022);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  user-select: none;
+}
+
+/* ── Content ── */
+.aw-hero__content {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  flex: 1;
-  min-width: 0;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
 }
 
-.aw-eyebrow {
+.aw-hero__eyebrow {
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
+  letter-spacing: 0.16em;
+  color: var(--accent);
 }
 
-.aw-name {
+.aw-hero__name {
   margin: 0;
-  font-size: 2.6rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  line-height: 1.05;
+  font-size: 3.4rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.025em;
 }
 
-.aw-subtitle {
-  margin: 4px 0 0;
+.aw-hero__subtitle {
+  margin: 6px 0 0;
   font-size: 0.96rem;
-  color: var(--text-muted);
-  max-width: 420px;
+  color: rgba(255, 255, 255, 0.48);
+  max-width: 380px;
   line-height: 1.55;
 }
 
-.aw-badge {
+.aw-hero__badge {
   display: inline-flex;
   align-items: center;
-  background: #f0f0f0;
-  color: #555;
-  font-size: 0.7rem;
+  background: rgba(255, 132, 39, 0.1);
+  border: 1px solid rgba(255, 132, 39, 0.3);
+  color: var(--accent);
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 4px 12px;
+  letter-spacing: 0.12em;
+  padding: 5px 14px;
   border-radius: var(--radius-pill);
   width: fit-content;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
-/* ── Decorative rings ─────────────────────────────────────────── */
-.aw-visual {
+/* ── Right visual accent ── */
+.aw-hero__visual {
   position: relative;
-  width: 170px;
-  height: 150px;
+  z-index: 1;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
-.aw-ring {
+.aw-hero__orb {
   position: absolute;
+  inset: 0;
   border-radius: 50%;
-  border: 2px solid;
+  background: radial-gradient(
+    circle at 38% 38%,
+    rgba(255, 132, 39, 0.2),
+    rgba(255, 132, 39, 0.025) 70%
+  );
+  border: 1px solid rgba(255, 132, 39, 0.18);
 }
 
-.aw-ring--a {
-  width: 170px;
-  height: 170px;
-  top: -10px;
-  right: -10px;
-  background: rgba(255, 132, 39, 0.04);
-  border-color: rgba(255, 132, 39, 0.14);
+.aw-hero__brand {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.35;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
 }
 
-.aw-ring--b {
-  width: 108px;
-  height: 108px;
-  top: 21px;
-  right: 31px;
-  background: transparent;
-  border-color: rgba(0, 0, 0, 0.07);
-}
-
-.aw-ring--c {
-  width: 56px;
-  height: 56px;
-  top: 47px;
-  right: 57px;
-  background: rgba(255, 132, 39, 0.09);
-  border-color: rgba(255, 132, 39, 0.24);
-}
-
-/* ── Responsive ───────────────────────────────────────────────── */
-@media (max-width: 640px) {
-  .aw-card {
-    padding: 24px 22px 24px 28px;
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .aw-hero {
+    padding: 40px 32px;
+    min-height: 240px;
   }
 
-  .aw-name {
-    font-size: 2rem;
+  .aw-hero__name {
+    font-size: 2.6rem;
   }
 
-  .aw-subtitle {
-    font-size: 0.9rem;
-  }
-
-  .aw-visual {
+  .aw-hero__visual {
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .aw-hero {
+    padding: 32px 24px;
+  }
+
+  .aw-hero__name {
+    font-size: 2.1rem;
+  }
+
+  .aw-hero__subtitle {
+    font-size: 0.88rem;
+  }
+}
+
