@@ -1,0 +1,132 @@
+.aw-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Left orange accent strip */
+.aw-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(to bottom, var(--accent), #c95f00);
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.aw-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.aw-eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.aw-name {
+  margin: 0;
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.05;
+}
+
+.aw-subtitle {
+  margin: 4px 0 0;
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.55;
+}
+
+.aw-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #f0f0f0;
+  color: #555;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  width: fit-content;
+  margin-top: 4px;
+}
+
+/* ── Decorative rings ─────────────────────────────────────────── */
+.aw-visual {
+  position: relative;
+  width: 170px;
+  height: 150px;
+  flex-shrink: 0;
+}
+
+.aw-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid;
+}
+
+.aw-ring--a {
+  width: 170px;
+  height: 170px;
+  top: -10px;
+  right: -10px;
+  background: rgba(255, 132, 39, 0.04);
+  border-color: rgba(255, 132, 39, 0.14);
+}
+
+.aw-ring--b {
+  width: 108px;
+  height: 108px;
+  top: 21px;
+  right: 31px;
+  background: transparent;
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+.aw-ring--c {
+  width: 56px;
+  height: 56px;
+  top: 47px;
+  right: 57px;
+  background: rgba(255, 132, 39, 0.09);
+  border-color: rgba(255, 132, 39, 0.24);
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .aw-card {
+    padding: 24px 22px 24px 28px;
+  }
+
+  .aw-name {
+    font-size: 2rem;
+  }
+
+  .aw-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .aw-visual {
+    display: none;
+  }
+}

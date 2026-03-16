@@ -6,7 +6,7 @@ import './Topbar.css'
 import { authApi } from '@/features/auth/api.js'
 import useAuthStore, { selectAuthUser } from '@/store/auth.js'
 
-const Topbar = ({ onMenuToggle }) => {
+const Topbar = ({ onMenuToggle, showSearch = true }) => {
   const navigate = useNavigate()
   const user = useAuthStore(selectAuthUser)
   const clearSession = useAuthStore((state) => state.clearSession)
@@ -39,20 +39,22 @@ const Topbar = ({ onMenuToggle }) => {
 
       {/* Derecha: buscador + usuario + logout */}
       <div className="topbar__right">
-        <div className="topbar__search">
-          <input
-            type="search"
-            placeholder="Buscar"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <span className="topbar__search-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="5" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          </span>
-        </div>
+        {showSearch && (
+          <div className="topbar__search">
+            <input
+              type="search"
+              placeholder="Buscar"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <span className="topbar__search-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="5" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </span>
+          </div>
+        )}
 
         <div className="topbar__user">
           <strong>{user?.nombre || 'Invitado'}</strong>

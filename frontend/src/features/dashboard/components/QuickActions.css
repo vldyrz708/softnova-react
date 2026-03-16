@@ -1,0 +1,122 @@
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.qa-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: var(--text-primary);
+  transition: background 0.22s, color 0.22s, border-color 0.22s,
+    transform 0.22s, box-shadow 0.22s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.qa-card:hover,
+.qa-card:focus-visible {
+  background: var(--primary-strong);
+  color: #fff;
+  border-color: var(--primary-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  outline: none;
+}
+
+/* ── Icon ── */
+.qa-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  transition: background 0.22s, color 0.22s;
+  flex-shrink: 0;
+}
+
+.qa-card:hover .qa-card__icon,
+.qa-card:focus-visible .qa-card__icon {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+/* ── Content ── */
+.qa-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.qa-card__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.qa-card__desc {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  transition: color 0.22s;
+}
+
+.qa-card:hover .qa-card__desc,
+.qa-card:focus-visible .qa-card__desc {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+/* ── Footer / CTA ── */
+.qa-card__footer {
+  margin-top: 4px;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 10px;
+  transition: border-color 0.22s;
+}
+
+.qa-card:hover .qa-card__footer,
+.qa-card:focus-visible .qa-card__footer {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.qa-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  transition: color 0.22s;
+}
+
+.qa-card:hover .qa-card__cta,
+.qa-card:focus-visible .qa-card__cta {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+}

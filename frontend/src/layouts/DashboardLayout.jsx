@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 
 import './DashboardLayout.css'
 import Sidebar from '@/components/navigation/Sidebar.jsx'
@@ -9,11 +9,12 @@ import useAuthSession from '@/hooks/useAuthSession.js'
 const DashboardLayout = () => {
   useAuthSession()
 
+  const { pathname } = useLocation()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <div className="layout">
-      <Topbar onMenuToggle={() => setSidebarOpen(true)} />
+      <Topbar onMenuToggle={() => setSidebarOpen(true)} showSearch={pathname !== '/app/admin'} />
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <main>
         <Outlet />

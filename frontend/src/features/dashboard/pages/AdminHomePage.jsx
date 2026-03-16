@@ -1,34 +1,25 @@
-import { useNavigate } from 'react-router-dom'
-import './RoleHomePage.css'
+import './AdminHomePage.css'
+import AdminWelcome from '../components/AdminWelcome.jsx'
+import DashboardStats from '../components/DashboardStats.jsx'
+import QuickActions from '../components/QuickActions.jsx'
+import BrandStrip from '../components/BrandStrip.jsx'
 
-const BRANDS = ['blackpink.png', 'bts.png', 'twice.png', 'allday.png', 'enhypen.png', 'lesserafim.png']
+const AdminHomePage = () => (
+  <div className="admin-home">
+    <AdminWelcome />
 
-const AdminHomePage = () => {
-  const navigate = useNavigate()
+    <section>
+      <h2 className="admin-home__section-label">Resumen rápido</h2>
+      <DashboardStats />
+    </section>
 
-  return (
-    <>
-      <section className="rh-hero">
-        <div className="rh-overlay" />
-        <div className="rh-content">
-          <h2 className="rh-subtitle">HOLA</h2>
-          <h1 className="rh-title">ADMINISTRADOR</h1>
-          <div className="rh-actions">
-            <button onClick={() => navigate('/app/albums')}>Ver Productos</button>
-            <button onClick={() => navigate('/app/users')}>Ver Usuarios</button>
-          </div>
-        </div>
-      </section>
-      <section className="rh-brands">
-        <div className="rh-brands__inner">
-          {BRANDS.map((logo) => (
-            <img key={logo} src={`/legacy/images/${logo}`} alt={logo.replace('.png', '')} />
-          ))}
-        </div>
-        <p className="rh-brands__signature">© NOVA</p>
-      </section>
-    </>
-  )
-}
+    <section>
+      <h2 className="admin-home__section-label">Accesos rápidos</h2>
+      <QuickActions />
+    </section>
+
+    <BrandStrip />
+  </div>
+)
 
 export default AdminHomePage
