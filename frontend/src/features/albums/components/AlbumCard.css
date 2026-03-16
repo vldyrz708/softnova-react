@@ -62,11 +62,9 @@
   display: inline-block;
 }
 .pc-dot--in {
-  background-color: #198754;
   color: #198754;
 }
 .pc-dot--out {
-  background-color: #dc3545;
   color: #dc3545;
 }
 .pc-stock-label {

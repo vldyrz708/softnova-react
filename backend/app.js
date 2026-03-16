@@ -7,6 +7,7 @@ const { manejoErrores, rutaNoEncontrada, logRequest, sanitizarEntrada } = requir
 const albumRoutes = require('./routes/albumRoutes');
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
+const salesRoutes = require('./routes/salesRoutes');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/albums', albumRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/sales', salesRoutes);
 
 // Documentación de la API
 app.use(

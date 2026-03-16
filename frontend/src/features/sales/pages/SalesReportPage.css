@@ -1,0 +1,114 @@
+.sr-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────────────────── */
+.sr-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sr-tab {
+  border: 1.5px solid var(--border-soft);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-radius: var(--radius-pill);
+  padding: 8px 20px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.sr-tab:hover {
+  border-color: #ee9e42;
+  color: #ee9e42;
+}
+
+.sr-tab--active {
+  background: #ee9e42;
+  border-color: #ee9e42;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ── Summary cards ────────────────────────────────────────────────────────── */
+.sr-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.sr-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sr-card__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sr-card__value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ── Table ────────────────────────────────────────────────────────────────── */
+.sr-table-wrap {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  overflow: auto;
+}
+
+.sr-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.sr-table th,
+.sr-table td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.sr-table th {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: #ee9e42;
+}
+
+.sr-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+}
+
+.sr-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.sr-table tbody tr:hover {
+  background: #ede7f6;
+  cursor: default;
+}
+
+.sr-table tbody tr:hover td:first-child {
+  color: #c2692e;
+}

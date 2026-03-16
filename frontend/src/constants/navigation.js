@@ -5,6 +5,7 @@ export const HOME_BY_ROLE = {
 }
 
 export const NAVIGATION = [
-  { label: 'Catálogo', path: '/app/albums', roles: ['Admin', 'Gerente', 'Usuario'] },
-  { label: 'Usuarios', path: '/app/users', roles: ['Admin', 'Gerente'] },
+  { label: 'Catálogo',          path: '/app/albums', roles: ['Admin', 'Gerente', 'Usuario'] },
+  { label: 'Usuarios',          path: '/app/users',  roles: ['Admin', 'Gerente'] },
+  { label: 'Reporte de Ventas', path: '/app/sales',  roles: ['Admin'] },
 ]
