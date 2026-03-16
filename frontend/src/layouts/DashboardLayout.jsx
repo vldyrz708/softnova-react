@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import './DashboardLayout.css'
 import Sidebar from '@/components/navigation/Sidebar.jsx'
 import Topbar from '@/components/navigation/Topbar.jsx'
-import useAuthSession from '@/features/auth/hooks.js'
+import useAuthSession from '@/hooks/useAuthSession.js'
 
 const DashboardLayout = () => {
   useAuthSession()

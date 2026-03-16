@@ -7,7 +7,7 @@ import Loader from '@/components/ui/Loader.jsx'
 import PageHeader from '@/components/ui/PageHeader.jsx'
 import UserFormModal from '../components/UserFormModal.jsx'
 import { useCreateUser, useDeleteUser, useUpdateUser, useUsers } from '../hooks.js'
-import useAuthStore, { selectAuthUser } from '@/features/auth/store.js'
+import useAuthStore, { selectAuthUser } from '@/store/auth.js'
 
 const ROL_BADGE = {
   Admin: { bg: '#ede9fe', color: '#5b21b6' },

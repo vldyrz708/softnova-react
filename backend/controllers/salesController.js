@@ -1,5 +1,41 @@
-const Sale = require('../models/Sale');
-const Album = require('../models/Album');
+const { ok, fail } = require('../utils/response');
+const salesService = require('../services/salesService');
+
+// ── Listar ventas con paginación ──────────────────────────────────────────────
+exports.listarVentas = async (req, res, next) => {
+    try {
+        const page  = parseInt(req.query.page)  || 1;
+        const limit = parseInt(req.query.limit) || 20;
+        const result = await salesService.listarVentas({ page, limit });
+        return ok(res, result);
+    } catch (err) {
+        next(err);
+    }
+};
+
+// ── Crear venta ───────────────────────────────────────────────────────────────
+exports.crearVenta = async (req, res, next) => {
+    try {
+        const { albumId, cantidad, notas } = req.body;
+        const userId = req.user.id || req.user._id;
+        const venta = await salesService.crearVenta({ albumId, cantidad, notas, userId });
+        return ok(res, { venta }, 201);
+    } catch (err) {
+        if (err.status) return fail(res, err.message, err.status);
+        next(err);
+    }
+};
+
+// ── Reporte agregado ──────────────────────────────────────────────────────────
+exports.reporte = async (req, res, next) => {
+    try {
+        const periodo = req.query.periodo || 'mes';
+        const { resumen, datos } = await salesService.reporte(periodo);
+        return ok(res, { periodo, resumen, datos });
+    } catch (err) {
+        next(err);
+    }
+};
 
 // ── Listar ventas con paginación ──────────────────────────────────────────────
 exports.listarVentas = async (req, res, next) => {

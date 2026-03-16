@@ -9,7 +9,7 @@ import AlbumCard from '../components/AlbumCard.jsx'
 import AlbumDetailModal from '../components/AlbumDetailModal.jsx'
 import AlbumFormModal from '../components/AlbumFormModal.jsx'
 import { useAlbums, useCreateAlbum, useDeleteAlbum, useUpdateAlbum } from '../hooks.js'
-import useAuthStore, { selectAuthUser } from '@/features/auth/store.js'
+import useAuthStore, { selectAuthUser } from '@/store/auth.js'
 
 const AlbumsPage = () => {
   const user = useAuthStore(selectAuthUser)

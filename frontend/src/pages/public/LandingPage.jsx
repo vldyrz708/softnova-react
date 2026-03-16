@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { authApi } from '@/features/auth/api.js'
 import { HOME_BY_ROLE } from '@/constants/navigation.js'
-import useAuthStore, { selectAuthUser, selectIsAuthenticated } from '@/features/auth/store.js'
+import useAuthStore, { selectAuthUser, selectIsAuthenticated } from '@/store/auth.js'
 
 import '@/styles/marketing.css'
 

@@ -1,112 +1,80 @@
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
+const { ok, fail } = require('../utils/response');
+const {
+    validarEdad,
+    crearUsuario,
+    obtenerUsuarios,
+    obtenerUsuarioPorId,
+    actualizarUsuario,
+    eliminarUsuario,
+} = require('../services/userService');
 
-const EDAD_MIN = 16;
-const EDAD_MAX = 99;
-
-function validarEdad(edad) {
-    if (edad === undefined || edad === null || edad === '') {
-        return 'La edad es requerida';
-    }
-    const edadNumero = Number(edad);
-    if (!Number.isInteger(edadNumero)) {
-        return 'La edad debe ser un número entero';
-    }
-    if (edadNumero < EDAD_MIN || edadNumero > EDAD_MAX) {
-        return `La edad debe estar entre ${EDAD_MIN} y ${EDAD_MAX} años`;
-    }
-    return null;
-}
-
-// Crear usuario
-async function crearUsuario(req, res, next) {
+async function crearUsuarioCtrl(req, res, next) {
     try {
-        // Aceptar tanto 'contrasena' como 'password' desde el frontend
         const { nombre, apellido, edad, numeroTelefono, rol, correo } = req.body;
         const errorEdad = validarEdad(edad);
-        if (errorEdad) {
-            return res.status(400).json({ success: false, message: errorEdad });
-        }
-        const edadNormalizada = Number(edad);
-        let password = req.body.contrasena || req.body.password;
-        if (!password) return res.status(400).json({ success: false, message: 'La contraseña es requerida' });
+        if (errorEdad) return fail(res, errorEdad);
 
-        const nuevo = new User({ nombre, apellido, edad: edadNormalizada, numeroTelefono, rol, correo, password });
-        const guardado = await nuevo.save();
-        const obj = guardado.toObject();
-        delete obj.password;
-        res.status(201).json({ success: true, user: obj });
+        const password = req.body.contrasena || req.body.password;
+        if (!password) return fail(res, 'La contraseña es requerida');
+
+        const user = await crearUsuario({ nombre, apellido, edad, numeroTelefono, rol, correo, password });
+        return ok(res, { user }, 201);
     } catch (error) {
         next(error);
     }
 }
 
-// Obtener todos los usuarios
-async function obtenerUsuarios(req, res, next) {
+async function obtenerUsuariosCtrl(req, res, next) {
     try {
-        const usuarios = await User.find().select('-password').sort({ createdAt: -1 });
-        res.json({ success: true, users: usuarios });
+        const users = await obtenerUsuarios();
+        return ok(res, { users });
     } catch (error) {
         next(error);
     }
 }
 
-// Obtener usuario por id
-async function obtenerUsuarioPorId(req, res, next) {
+async function obtenerUsuarioPorIdCtrl(req, res, next) {
     try {
-        const { id } = req.params;
-        const user = await User.findById(id).select('-password');
-        if (!user) return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
-        res.json({ success: true, user });
+        const user = await obtenerUsuarioPorId(req.params.id);
+        if (!user) return fail(res, 'Usuario no encontrado', 404);
+        return ok(res, { user });
     } catch (error) {
         next(error);
     }
 }
 
-// Actualizar usuario (patch)
-async function actualizarUsuario(req, res, next) {
+async function actualizarUsuarioCtrl(req, res, next) {
     try {
-        const { id } = req.params;
         const cambios = { ...req.body };
 
         if (cambios.edad !== undefined) {
             const errorEdad = validarEdad(cambios.edad);
-            if (errorEdad) {
-                return res.status(400).json({ success: false, message: errorEdad });
-            }
+            if (errorEdad) return fail(res, errorEdad);
             cambios.edad = Number(cambios.edad);
         }
-        // Si vienen contrasena o password, hashearla antes de actualizar
-        let plain = cambios.contrasena || cambios.password;
-        if (plain) {
-            const salt = await bcrypt.genSalt(10);
-            cambios.password = await bcrypt.hash(plain, salt);
-            delete cambios.contrasena;
-        }
-        const actualizado = await User.findByIdAndUpdate(id, cambios, { new: true, runValidators: true }).select('-password');
-        if (!actualizado) return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
-        res.json({ success: true, user: actualizado });
+
+        const user = await actualizarUsuario(req.params.id, cambios);
+        if (!user) return fail(res, 'Usuario no encontrado', 404);
+        return ok(res, { user });
     } catch (error) {
         next(error);
     }
 }
 
-// Eliminar usuario
-async function eliminarUsuario(req, res, next) {
+async function eliminarUsuarioCtrl(req, res, next) {
     try {
-        const { id } = req.params;
-        const eliminado = await User.findByIdAndDelete(id);
-        if (!eliminado) return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
-        res.json({ success: true, message: 'Usuario eliminado' });
+        const eliminado = await eliminarUsuario(req.params.id);
+        if (!eliminado) return fail(res, 'Usuario no encontrado', 404);
+        return ok(res, { message: 'Usuario eliminado' });
     } catch (error) {
         next(error);
     }
 }
 
 module.exports = {
-    crearUsuario,
-    obtenerUsuarios,
-    obtenerUsuarioPorId,
-    actualizarUsuario,
-    eliminarUsuario
+    crearUsuario: crearUsuarioCtrl,
+    obtenerUsuarios: obtenerUsuariosCtrl,
+    obtenerUsuarioPorId: obtenerUsuarioPorIdCtrl,
+    actualizarUsuario: actualizarUsuarioCtrl,
+    eliminarUsuario: eliminarUsuarioCtrl,
 };

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 import './Sidebar.css'
 import { HOME_BY_ROLE, NAVIGATION } from '@/constants/navigation.js'
-import useAuthStore, { selectAuthUser } from '@/features/auth/store.js'
+import useAuthStore, { selectAuthUser } from '@/store/auth.js'
 
 const Sidebar = ({ open, onClose }) => {
   const user = useAuthStore(selectAuthUser)

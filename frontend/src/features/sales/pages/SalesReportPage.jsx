@@ -4,6 +4,7 @@ import Loader from '@/components/ui/Loader.jsx'
 import EmptyState from '@/components/ui/EmptyState.jsx'
 import ErrorState from '@/components/ui/ErrorState.jsx'
 import { useSalesReport } from '../hooks.js'
+import { formatCurrency } from '@/utils/format.js'
 import './SalesReportPage.css'
 
 const PERIODOS = [
@@ -22,8 +23,6 @@ function etiqueta(d, periodo) {
   if (periodo === 'anio')   return `${d._id.anio}`
   return '—'
 }
-
-const fmt = (n) => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(n ?? 0)
 
 const SalesReportPage = () => {
   const [periodo, setPeriodo] = useState('mes')
@@ -60,7 +59,7 @@ const SalesReportPage = () => {
         </div>
         <div className="sr-card">
           <span className="sr-card__label">Ingresos totales</span>
-          <span className="sr-card__value">{fmt(resumen.totalIngresos)}</span>
+          <span className="sr-card__value">{formatCurrency(resumen.totalIngresos)}</span>
         </div>
         <div className="sr-card">
           <span className="sr-card__label">Unidades vendidas</span>
@@ -103,7 +102,7 @@ const SalesReportPage = () => {
                   <td>{etiqueta(fila, periodo)}</td>
                   <td>{fila.ventas}</td>
                   <td>{fila.unidades}</td>
-                  <td>{fmt(fila.ingresos)}</td>
+                  <td>{formatCurrency(fila.ingresos)}</td>
                 </tr>
               ))}
             </tbody>

@@ -1,8 +1,6 @@
 const express = require('express');
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 const router = express.Router();
+const { upload } = require('../utils/upload');
 
 // Importar middlewares de validación
 const {
@@ -25,47 +23,6 @@ const {
     obtenerAlbumesPorCategoria,
     obtenerEstadisticas
 } = require('../controllers/albumController');
-
-// Configuración de Multer para subida de archivos
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const uploadPath = path.join(__dirname, '../uploads');
-        
-        // Crear directorio si no existe
-        if (!fs.existsSync(uploadPath)) {
-            fs.mkdirSync(uploadPath, { recursive: true });
-        }
-        
-        cb(null, uploadPath);
-    },
-    filename: function (req, file, cb) {
-        // Generar nombre único para el archivo
-        const uniqueName = `album-${Date.now()}-${Math.round(Math.random() * 1E9)}${path.extname(file.originalname)}`;
-        cb(null, uniqueName);
-    }
-});
-
-// Filtro para validar tipos de archivo
-const fileFilter = (req, file, cb) => {
-    // Permitir solo imágenes
-    const allowedTypes = /jpeg|jpg|png|gif|webp/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
-
-    if (mimetype && extname) {
-        return cb(null, true);
-    } else {
-        cb(new Error('Solo se permiten archivos de imagen (jpeg, jpg, png, gif, webp)'));
-    }
-};
-
-const upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 5 * 1024 * 1024 // 5MB máximo
-    },
-    fileFilter: fileFilter
-});
 
 // Middleware para manejar archivos subidos y mapear campos del frontend
 const procesarFotoAlbum = (req, res, next) => {

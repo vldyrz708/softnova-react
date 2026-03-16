@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { authApi } from '../api.js'
 import './LoginPage.css'
-import useAuthStore, { selectIsAuthenticated } from '../store.js'
+import useAuthStore, { selectIsAuthenticated } from '@/store/auth.js'
 import { HOME_BY_ROLE } from '@/constants/navigation.js'
 
 const LoginPage = () => {

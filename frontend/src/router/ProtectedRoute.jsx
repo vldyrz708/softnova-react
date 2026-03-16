@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
-import useAuthStore, { selectAuthUser, selectIsAuthenticated } from '@/features/auth/store.js'
+import useAuthStore, { selectAuthUser, selectIsAuthenticated } from '@/store/auth.js'
 
 const ProtectedRoute = ({ allowedRoles }) => {
   const location = useLocation()

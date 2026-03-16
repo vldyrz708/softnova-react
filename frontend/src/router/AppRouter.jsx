@@ -11,7 +11,7 @@ import NotFoundPage from '@/pages/public/NotFoundPage.jsx'
 import UsersPage from '@/features/users/pages/UsersPage.jsx'
 import SalesReportPage from '@/features/sales/pages/SalesReportPage.jsx'
 import ProtectedRoute from './ProtectedRoute.jsx'
-import useAuthStore, { selectAuthUser } from '@/features/auth/store.js'
+import useAuthStore, { selectAuthUser } from '@/store/auth.js'
 import { HOME_BY_ROLE } from '@/constants/navigation.js'
 
 const RoleRedirect = () => {
