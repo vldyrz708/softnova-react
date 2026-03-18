@@ -62,19 +62,19 @@ const KPICard = ({ icon, label, value, description, accentColor, isLoading }) =>
 const DashboardStats = () => {
   const { data: albumStats, isLoading: l1 } = useQuery({
     queryKey: ['admin-album-stats'],
-    queryFn: () => client.get('/albums/stats').then((r) => r.data.data),
+    queryFn: () => client.get('/api/albums/stats').then((r) => r.data.data),
     staleTime: 5 * 60_000,
   })
 
   const { data: usersData, isLoading: l2 } = useQuery({
     queryKey: ['admin-users-count'],
-    queryFn: () => client.get('/users').then((r) => r.data.users),
+    queryFn: () => client.get('/api/users').then((r) => r.data.data?.users ?? r.data.users),
     staleTime: 5 * 60_000,
   })
 
   const { data: salesData, isLoading: l3 } = useQuery({
     queryKey: ['admin-sales-mes'],
-    queryFn: () => client.get('/sales/reporte?periodo=mes').then((r) => r.data),
+    queryFn: () => client.get('/api/sales/reporte?periodo=mes').then((r) => r.data),
     staleTime: 2 * 60_000,
   })
 

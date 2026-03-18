@@ -1,32 +1,21 @@
 const { ok, fail } = require('../utils/response');
-const {
-    validarEdad,
-    crearUsuario,
-    obtenerUsuarios,
-    obtenerUsuarioPorId,
-    actualizarUsuario,
-    eliminarUsuario,
-} = require('../services/userService');
+const userUseCases = require('../src/application/usecases/users');
 
 async function crearUsuarioCtrl(req, res, next) {
     try {
         const { nombre, apellido, edad, numeroTelefono, rol, correo } = req.body;
-        const errorEdad = validarEdad(edad);
-        if (errorEdad) return fail(res, errorEdad);
-
         const password = req.body.contrasena || req.body.password;
-        if (!password) return fail(res, 'La contraseña es requerida');
-
-        const user = await crearUsuario({ nombre, apellido, edad, numeroTelefono, rol, correo, password });
+        const user = await userUseCases.createUser({ nombre, apellido, edad, numeroTelefono, rol, correo, password });
         return ok(res, { user }, 201);
     } catch (error) {
+        if (error.status) return fail(res, error.message, error.status);
         next(error);
     }
 }
 
 async function obtenerUsuariosCtrl(req, res, next) {
     try {
-        const users = await obtenerUsuarios();
+        const users = await userUseCases.listUsers();
         return ok(res, { users });
     } catch (error) {
         next(error);
@@ -35,7 +24,7 @@ async function obtenerUsuariosCtrl(req, res, next) {
 
 async function obtenerUsuarioPorIdCtrl(req, res, next) {
     try {
-        const user = await obtenerUsuarioPorId(req.params.id);
+        const user = await userUseCases.getUserById({ id: req.params.id });
         if (!user) return fail(res, 'Usuario no encontrado', 404);
         return ok(res, { user });
     } catch (error) {
@@ -46,24 +35,18 @@ async function obtenerUsuarioPorIdCtrl(req, res, next) {
 async function actualizarUsuarioCtrl(req, res, next) {
     try {
         const cambios = { ...req.body };
-
-        if (cambios.edad !== undefined) {
-            const errorEdad = validarEdad(cambios.edad);
-            if (errorEdad) return fail(res, errorEdad);
-            cambios.edad = Number(cambios.edad);
-        }
-
-        const user = await actualizarUsuario(req.params.id, cambios);
+        const user = await userUseCases.updateUser({ id: req.params.id, cambios });
         if (!user) return fail(res, 'Usuario no encontrado', 404);
         return ok(res, { user });
     } catch (error) {
+        if (error.status) return fail(res, error.message, error.status);
         next(error);
     }
 }
 
 async function eliminarUsuarioCtrl(req, res, next) {
     try {
-        const eliminado = await eliminarUsuario(req.params.id);
+        const eliminado = await userUseCases.deleteUser({ id: req.params.id });
         if (!eliminado) return fail(res, 'Usuario no encontrado', 404);
         return ok(res, { message: 'Usuario eliminado' });
     } catch (error) {

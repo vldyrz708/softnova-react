@@ -8,7 +8,8 @@ async function login(req, res, next) {
         const { correo, password } = req.body;
         if (!correo || !password) return fail(res, 'Correo y contraseña son requeridos');
 
-        const result = await loginUser(correo, password);
+        const correoNormalizado = normalizarCorreo(correo);
+        const result = await loginUser(correoNormalizado, password);
         res.cookie(result.cookieName, result.token, result.cookieOptions);
         return ok(res, { token: result.token, user: result.user, expiresIn: result.expiresIn });
     } catch (err) {
