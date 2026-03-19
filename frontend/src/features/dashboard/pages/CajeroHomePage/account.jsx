@@ -52,6 +52,10 @@ const Account = ({ user }) => {
                 <span>{user?.correo || 'No especificado'}</span>
               </div>
               <div className="info-item">
+                <label>ID de cuenta:</label>
+                <span>{user?.id || user?._id || 'No especificado'}</span>
+              </div>
+              <div className="info-item">
                 <label>Teléfono:</label>
                 <span>{user?.numeroTelefono || 'No especificado'}</span>
               </div>

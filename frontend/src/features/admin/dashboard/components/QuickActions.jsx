@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import './QuickActions.css'
+import '../css/QuickActions.css'
 
 // ── Icons ──────────────────────────────────────────────────────────────────
 const GridIcon = () => (

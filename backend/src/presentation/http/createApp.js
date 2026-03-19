@@ -11,9 +11,9 @@ const {
 } = require('../../../middlewares/error')
 
 const albumRoutes = require('../../../routes/albumRoutes')
-const userRoutes = require('../../../routes/userRoutes')
+const userRoutes = require('../../../admin/routes/userRoutes')
 const authRoutes = require('../../../routes/authRoutes')
-const salesRoutes = require('../../../routes/salesRoutes')
+const salesRoutes = require('../../../admin/routes/salesRoutes')
 
 function createApp() {
   const app = express()

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userCtrl = require('../controllers/userController');
-const { verifyToken, requireRole } = require('../middlewares/auth');
+const { verifyToken, requireRole } = require('../../middlewares/auth');
 
 // Rutas: /api/users
 // Protegemos la ruta de usuarios: requiere autenticación

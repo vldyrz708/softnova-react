@@ -1,8 +1,8 @@
 /**
  * Sales service — business logic and DB access for sales.
  */
-const Sale = require('../models/Sale');
-const Album = require('../models/Album');
+const Sale = require('../../models/Sale');
+const Album = require('../../models/Album');
 
 async function listarVentas({ page = 1, limit = 20 }) {
   const safePage = Math.max(1, page);

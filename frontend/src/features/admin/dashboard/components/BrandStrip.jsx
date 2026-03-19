@@ -1,4 +1,4 @@
-import './BrandStrip.css'
+import '../css/BrandStrip.css'
 
 const BRANDS = [
   'blackpink.png',

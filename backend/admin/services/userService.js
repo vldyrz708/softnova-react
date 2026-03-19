@@ -2,7 +2,7 @@
  * User service — business logic for user management.
  */
 const bcrypt = require('bcryptjs');
-const User = require('../models/User');
+const User = require('../../models/User');
 
 const EDAD_MIN = 16;
 const EDAD_MAX = 99;

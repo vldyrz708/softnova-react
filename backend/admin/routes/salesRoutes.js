@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const salesCtrl = require('../controllers/salesController');
-const { verifyToken, requireRole } = require('../middlewares/auth');
+const { verifyToken, requireRole } = require('../../middlewares/auth');
 
 // Reporte: solo Admin
 router.get('/reporte', verifyToken, requireRole('Admin'), salesCtrl.reporte);

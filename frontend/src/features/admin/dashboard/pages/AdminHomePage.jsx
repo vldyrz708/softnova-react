@@ -1,4 +1,4 @@
-import './AdminHomePage.css'
+import '../css/AdminHomePage.css'
 import AdminWelcome from '../components/AdminWelcome.jsx'
 import QuickActions from '../components/QuickActions.jsx'
 import BrandStrip from '../components/BrandStrip.jsx'

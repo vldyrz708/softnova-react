@@ -1,5 +1,5 @@
 import useAuthStore, { selectAuthUser } from '@/store/auth.js'
-import './AdminWelcome.css'
+import '../css/AdminWelcome.css'
 
 const AdminWelcome = () => {
   const user = useAuthStore(selectAuthUser)

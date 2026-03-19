@@ -6,6 +6,7 @@ import { useAlbums } from '@/features/albums/hooks.js'
 import Cart from './cart.jsx'
 import Favorites from './favorites.jsx'
 import Account from './account.jsx'
+import AlbumDetailModal from './AlbumDetailModal.jsx'
 import './styles.css'
 
 const CajeroHomePage = () => {
@@ -15,6 +16,7 @@ const CajeroHomePage = () => {
   const [activeTab, setActiveTab] = useState('albums')
   const [cart, setCart] = useState([])
   const [favorites, setFavorites] = useState([])
+  const [detailAlbum, setDetailAlbum] = useState(null)
 
   const userKey = useMemo(() => user?.id || user?._id || 'guest', [user])
 
@@ -83,6 +85,15 @@ const CajeroHomePage = () => {
   }
 
   const isInFavorites = (albumId) => favorites.some((item) => item.id === albumId)
+
+  const toggleFavorite = (album) => {
+    const id = albumId(album)
+    if (isInFavorites(id)) {
+      removeFromFavorites(id)
+    } else {
+      addToFavorites(album)
+    }
+  }
 
   const getTotalCart = () =>
     cart.reduce((total, item) => total + (Number(item.precio) || 0) * item.quantity, 0)
@@ -159,6 +170,9 @@ const CajeroHomePage = () => {
                         <button className="btn-secondary" onClick={() => addToCart(album)}>
                           Agregar al carrito
                         </button>
+                        <button className="btn-link" onClick={() => setDetailAlbum(album)}>
+                          Ver detalles
+                        </button>
                         <button
                           className={`btn-link ${inFavorites ? 'active' : ''}`}
                           onClick={() => (inFavorites ? removeFromFavorites(id) : addToFavorites(album))}
@@ -199,6 +213,20 @@ const CajeroHomePage = () => {
         )}
 
         {activeTab === 'account' && <Account user={user} />}
+
+        <AlbumDetailModal
+          isOpen={Boolean(detailAlbum)}
+          album={detailAlbum}
+          onClose={() => setDetailAlbum(null)}
+          onAddToCart={(album) => {
+            addToCart(album)
+            setDetailAlbum(null)
+          }}
+          onToggleFavorite={(album) => {
+            toggleFavorite(album)
+          }}
+          inFavorites={detailAlbum ? isInFavorites(albumId(detailAlbum)) : false}
+        />
       </main>
     </div>
   )

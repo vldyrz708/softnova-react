@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { useCreateSale } from '@/features/sales/hooks.js'
+import { useCreateSale } from "@/hooks/useCreateSale.js";
+
 import { formatCurrency } from '@/utils/format.js'
 
 const Cart = ({ cartItems, onRemove, onUpdateQuantity, total, onClearCart }) => {
@@ -7,8 +8,10 @@ const Cart = ({ cartItems, onRemove, onUpdateQuantity, total, onClearCart }) => 
     nombre: '',
     correo: '',
     telefono: '',
+    numeroCuenta: '',
     notas: ''
   })
+  const [lastSales, setLastSales] = useState([])
   const createSaleMutation = useCreateSale()
 
   const handleQuantityChange = (itemId, newQuantity) => {
@@ -19,25 +22,28 @@ const Cart = ({ cartItems, onRemove, onUpdateQuantity, total, onClearCart }) => 
   const handleCheckout = async () => {
     if (cartItems.length === 0) return
 
-    if (!customerInfo.nombre || !customerInfo.correo) {
-      alert('Por favor completa la información del cliente')
+    if (!customerInfo.nombre || !customerInfo.correo || !customerInfo.numeroCuenta) {
+      alert('Por favor completa la información del cliente (nombre, correo y número de cuenta)')
       return
     }
 
     try {
-      await Promise.all(
+      const ventas = await Promise.all(
         cartItems.map((item) =>
           createSaleMutation.mutateAsync({
             albumId: item.id || item._id,
             cantidad: item.quantity,
-            notas: customerInfo.notas || ''
+            notas: customerInfo.notas || '',
+            clienteNombre: customerInfo.nombre,
+            numeroCuenta: customerInfo.numeroCuenta,
           })
         )
       )
 
+      setLastSales(ventas)
       alert('Venta realizada exitosamente!')
       onClearCart()
-      setCustomerInfo({ nombre: '', correo: '', telefono: '', notas: '' })
+      setCustomerInfo({ nombre: '', correo: '', telefono: '', numeroCuenta: '', notas: '' })
     } catch (error) {
       alert('Error al procesar la venta: ' + (error?.message || 'Revisa la conexión'))
     }
@@ -132,6 +138,15 @@ const Cart = ({ cartItems, onRemove, onUpdateQuantity, total, onClearCart }) => 
               />
             </div>
             <div className="form-group">
+              <label>Número de cuenta *</label>
+              <input
+                type="text"
+                value={customerInfo.numeroCuenta}
+                onChange={(e) => setCustomerInfo((prev) => ({ ...prev, numeroCuenta: e.target.value }))}
+                placeholder="1234567890"
+              />
+            </div>
+            <div className="form-group">
               <label>Notas (opcional)</label>
               <textarea
                 value={customerInfo.notas}
@@ -151,6 +166,27 @@ const Cart = ({ cartItems, onRemove, onUpdateQuantity, total, onClearCart }) => 
               {createSaleMutation.isPending ? 'Procesando...' : 'Realizar Venta'}
             </button>
           </div>
+
+          {lastSales.length > 0 && (
+            <div className="sale-summary">
+              <h3>Última venta</h3>
+              <p>
+                Cliente: <strong>{lastSales[0].clienteNombre}</strong> · Cuenta: <strong>{lastSales[0].numeroCuenta}</strong>
+              </p>
+              <div className="sale-items">
+                {lastSales.map((sale) => (
+                  <div key={sale._id} className="sale-item">
+                    <p>
+                      <strong>{sale.album?.nombreAlbum || 'Producto'}</strong> x{sale.cantidad} • {formatCurrency(sale.total)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <p className="sale-total">
+                Total: <strong>{formatCurrency(lastSales.reduce((sum, s) => sum + (s.total || 0), 0))}</strong>
+              </p>
+            </div>
+          )}
         </>
       )}
     </div>
