@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './UsersPage.css'
+import '../css/UsersPage.css'
 
 import ConfirmDialog from '@/components/ui/ConfirmDialog.jsx'
 import ErrorState from '@/components/ui/ErrorState.jsx'

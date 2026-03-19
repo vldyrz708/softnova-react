@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './UserFormModal.css'
+import '../css/UserFormModal.css'
 
 const ROLES = ['Usuario', 'Gerente', 'Admin']
 

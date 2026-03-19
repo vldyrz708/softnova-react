@@ -1,5 +1,5 @@
-const { ok, fail } = require('../utils/response');
-const userUseCases = require('../src/application/usecases/users');
+const { ok, fail } = require('../../utils/response');
+const userUseCases = require('../../src/application/usecases/users');
 
 async function crearUsuarioCtrl(req, res, next) {
     try {

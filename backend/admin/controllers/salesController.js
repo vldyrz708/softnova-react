@@ -1,5 +1,5 @@
-const { ok, fail } = require('../utils/response');
-const salesUseCases = require('../src/application/usecases/sales');
+const { ok, fail } = require('../../utils/response');
+const salesUseCases = require('../../src/application/usecases/sales');
 
 // ── Listar ventas con paginación ──────────────────────────────────────────────
 exports.listarVentas = async (req, res, next) => {

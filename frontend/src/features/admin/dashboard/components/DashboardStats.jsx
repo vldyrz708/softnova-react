@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import client from '@/api/client.js'
 import { formatCurrency } from '@/utils/format.js'
-import './DashboardStats.css'
+import '../css/DashboardStats.css'
 
 // ── Icons ──────────────────────────────────────────────────────────────────
 const AlbumIcon = () => (

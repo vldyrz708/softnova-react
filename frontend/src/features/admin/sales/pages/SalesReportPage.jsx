@@ -5,7 +5,7 @@ import EmptyState from '@/components/ui/EmptyState.jsx'
 import ErrorState from '@/components/ui/ErrorState.jsx'
 import { useSalesReport } from '../hooks.js'
 import { formatCurrency } from '@/utils/format.js'
-import './SalesReportPage.css'
+import '../css/SalesReportPage.css'
 
 const PERIODOS = [
   { key: 'dia',    label: 'Por Día'    },
