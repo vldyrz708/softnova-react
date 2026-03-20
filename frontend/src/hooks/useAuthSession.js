@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { authApi } from '@/features/auth/api.js'
 import useAuthStore, { selectIsAuthenticated } from '@/store/auth.js'
 
+
 const useAuthSession = () => {
   const isAuthenticated = useAuthStore(selectIsAuthenticated)
   const setUser = useAuthStore((state) => state.setUser)

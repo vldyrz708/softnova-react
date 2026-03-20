@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import DashboardLayout from '@/layouts/DashboardLayout.jsx'
 import AlbumsPage from '@/features/albums/pages/AlbumsPage.jsx'
 import AdminHomePage from '@/features/admin/dashboard/pages/AdminHomePage.jsx'
-import CajeroHomePage from '@/features/dashboard/pages/CajeroHomePage.jsx'
+import CajeroHomePage from '@/features/admin/users/pages/CajeroHomePage.jsx'
 import GerenteHomePage from '@/features/dashboard/pages/GerenteHomePage.jsx'
 import LandingPage from '@/pages/public/LandingPage.jsx'
 import LoginPage from '@/features/auth/pages/LoginPage.jsx'
@@ -12,7 +12,8 @@ import UsersPage from '@/features/admin/users/pages/UsersPage.jsx'
 import SalesReportPage from '@/features/admin/sales/pages/SalesReportPage.jsx'
 import ProtectedRoute from './ProtectedRoute.jsx'
 import useAuthStore, { selectAuthUser } from '@/store/auth.js'
-import { HOME_BY_ROLE } from '@/constants/navigation.js'
+import { HOME_BY_ROLE } from '@/constants/navigation.js' 
+
 
 const RoleRedirect = () => {
   const user = useAuthStore(selectAuthUser)
@@ -57,6 +58,7 @@ const AppRouter = () => {
           <Route element={<ProtectedRoute allowedRoles={['Admin']} />}>
             <Route path="sales" element={<SalesReportPage />} />
           </Route>
+          
         </Route>
       </Route>
 
