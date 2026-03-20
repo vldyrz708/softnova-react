@@ -1,4 +1,4 @@
-import './styles.css'
+import '../css/RoleHomePage.css'
 
 const AlbumDetailModal = ({ isOpen, album, onClose, onAddToCart, onToggleFavorite, inFavorites }) => {
   if (!isOpen || !album) return null

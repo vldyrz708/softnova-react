@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import DashboardLayout from '@/layouts/DashboardLayout.jsx'
 import AlbumsPage from '@/features/albums/pages/AlbumsPage.jsx'
 import AdminHomePage from "@/features/admin/dashboard/pages/AdminHomePage.jsx";
-import CajeroHomePage from '@/features/dashboard/pages/CajeroHomePage'
+import CajeroHomePage from '@/features/admin/users/pages/CajeroHomePage.jsx'
 import GerenteHomePage from '@/features/dashboard/pages/GerenteHomePage.jsx'
 import LandingPage from '@/pages/public/LandingPage.jsx'
 import LoginPage from '@/features/auth/pages/LoginPage.jsx'
